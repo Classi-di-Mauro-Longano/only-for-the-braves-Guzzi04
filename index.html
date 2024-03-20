@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Gestione Lezioni</title>
+            <link rel="stylesheet" href="stili.css">
+            <script src="script.js"></script>
+            </head>
+        <body>
+            
+            <div class="container">
+                <h1>Gestione Lezioni</h1>
+                <div id="elenco-lezioni"></div>
+                <form id="modulo-lezione">
+                    <input type="text" id="titolo" placeholder="titolo" required>       <!--con placeholder metto come sfondo il testo-->
+                    <input type="text" id="descrizione-lezione" placeholder="Descrizione della lezione" required>  <!--metto required per l'utente deve compilare quel campo per forza-->
+                    <input type="datetime-local" id="data-ora-lezione" required>
+                    <button type="submit">Aggiungi Lezione</button>
+                </form>
+                <button id="elimina-tutte">Elimina Tutte le Lezioni</button>
+            </div>
+    </body>
+</html>

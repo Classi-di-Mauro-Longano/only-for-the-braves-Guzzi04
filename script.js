@@ -36,7 +36,7 @@ eliminaTutteButton.addEventListener('click', function () {
 // Carica le lezioni salvate al caricamento della pagina
 caricaLezioniSalvate();
 
-// Funzione per aggiungere una nuova lezione
+// Aggiungere una nuova lezione
 function aggiungiLezione(titolo, descrizione, dataOra) {
     const lezione = document.createElement('div');
     lezione.classList.add('lezione');
@@ -50,6 +50,13 @@ function aggiungiLezione(titolo, descrizione, dataOra) {
       `;
     elencoLezioni.appendChild(lezione);
     salvaLezione(descrizione, dataOra);
+}
+
+// Eliminare una lezione
+function eliminaLezione(lezione) {
+    const descrizione = lezione.querySelector('p ').textContent;
+    lezione.remove();
+    rimuoviLezione(descrizione);
 }
 
 

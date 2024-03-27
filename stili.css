@@ -4,3 +4,8 @@ body{
     padding: 0;
     background-image: url("img/sfondo.png");
 }
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }

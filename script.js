@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const dataOraInput = document.getElementById('data-ora-lezione');
     const eliminaTutteButton = document.getElementById('elimina-tutte');
     
-  // Aggiungi lezione
-  moduloLezione.addEventListener('submit', function (e) {
+// Aggiungi lezione
+moduloLezione.addEventListener('submit', function (e) {
     e.preventDefault();                                   //quando invio i dati in un form non carica la pagina
     const titolo = titoloInput.value;
     const descrizione = descrizioneInput.value;
@@ -27,4 +27,29 @@ elencoLezioni.addEventListener('click', function (e) {
       eliminaLezione(e.target.parentElement);
     }
 });
+
+// Elimina tutte le lezioni
+eliminaTutteButton.addEventListener('click', function () {
+    eliminaTutteLezioni();
+});
+    
+// Carica le lezioni salvate al caricamento della pagina
+caricaLezioniSalvate();
+
+// Funzione per aggiungere una nuova lezione
+function aggiungiLezione(titolo, descrizione, dataOra) {
+    const lezione = document.createElement('div');
+    lezione.classList.add('lezione');
+    lezione.innerHTML = `
+      <p>
+        ${titolo}<br>
+        ${descrizione}<br>
+        ${formattaData(dataOra)}
+      </p>
+      <button class="elimina">Elimina</button>
+      `;
+    elencoLezioni.appendChild(lezione);
+    salvaLezione(descrizione, dataOra);
+}
+
 

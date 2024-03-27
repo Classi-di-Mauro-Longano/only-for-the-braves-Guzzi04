@@ -59,6 +59,13 @@ function eliminaLezione(lezione) {
     rimuoviLezione(descrizione);
 }
 
+// Rimuovere una lezione dal localStorage
+function rimuoviLezione(descrizione) {
+    let lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
+    lezioni = lezioni.filter(lezione => lezione.descrizione !== descrizione);
+    localStorage.setItem('lezioni', JSON.stringify(lezioni));
+}
+
 // Salvo una lezione nel localStorage
 function salvaLezione(descrizione, dataOra) {
     let lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
@@ -66,3 +73,32 @@ function salvaLezione(descrizione, dataOra) {
     localStorage.setItem('lezioni', JSON.stringify(lezioni));
 }
 
+// Carico le lezioni salvate al caricamento della pagina
+function caricaLezioniSalvate() {
+    let lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
+    lezioni.forEach(lezione => {
+      aggiungiLezione(lezione.descrizione, lezione.dataOra);
+    });
+}
+    
+// Elimino tutte le lezioni
+    function eliminaTutteLezioni() {
+    elencoLezioni.innerHTML = '';
+    localStorage.removeItem('lezioni');
+}
+
+// Funzione per formattare la data
+function formattaData(dataOra) {
+    const data = new Date(dataOra);
+    const opzioni = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: false,
+    };
+    return data.toLocaleString('it-IT', opzioni);
+  }
+
+});

@@ -59,4 +59,10 @@ function eliminaLezione(lezione) {
     rimuoviLezione(descrizione);
 }
 
+// Salvo una lezione nel localStorage
+function salvaLezione(descrizione, dataOra) {
+    let lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
+    lezioni.push({ descrizione, dataOra });
+    localStorage.setItem('lezioni', JSON.stringify(lezioni));
+}
 

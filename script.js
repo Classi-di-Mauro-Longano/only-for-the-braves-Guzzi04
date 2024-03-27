@@ -14,7 +14,7 @@ moduloLezione.addEventListener('submit', function (e) {
     const dataOra = dataOraInput.value;
   
     if (titolo && descrizione && dataOra) {
-      aggiungiLezione(titolo, descrizione, dataOra);
+      aggiungiLezione(titolo, descrizione, dataOra, false);
         titoloInput.value = '';
         descrizioneInput.value = '';
         dataOraInput.value = '';
@@ -37,7 +37,7 @@ eliminaTutteButton.addEventListener('click', function () {
 caricaLezioniSalvate();
 
 // Aggiungere una nuova lezione
-function aggiungiLezione(titolo, descrizione, dataOra) {
+function aggiungiLezione(titolo, descrizione, dataOra, isLoading) {
     const lezione = document.createElement('div');
     lezione.classList.add('lezione');
     lezione.innerHTML = `
@@ -49,7 +49,11 @@ function aggiungiLezione(titolo, descrizione, dataOra) {
       <button class="elimina">Elimina</button>
       `;
     elencoLezioni.appendChild(lezione);
-    salvaLezione(descrizione, dataOra);
+    
+    if(!isLoading){
+        salvaLezione(titolo, descrizione, dataOra);
+    }
+    
 }
 
 // Eliminare una lezione
@@ -60,16 +64,20 @@ function eliminaLezione(lezione) {
 }
 
 // Rimuovere una lezione dal localStorage
-function rimuoviLezione(descrizione) {
+function rimuoviLezione(titolo, descrizione) {
     let lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
+    lezioni = lezioni.filter(lezione => lezione.titolo !== titolo);
+    localStorage.setItem('lezioni', JSON.stringify(lezioni));
+
+    lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
     lezioni = lezioni.filter(lezione => lezione.descrizione !== descrizione);
     localStorage.setItem('lezioni', JSON.stringify(lezioni));
 }
 
 // Salvo una lezione nel localStorage
-function salvaLezione(descrizione, dataOra) {
+function salvaLezione(titolo, descrizione, dataOra) {
     let lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
-    lezioni.push({ descrizione, dataOra });
+    lezioni.push({ titolo, descrizione, dataOra });
     localStorage.setItem('lezioni', JSON.stringify(lezioni));
 }
 
@@ -77,7 +85,7 @@ function salvaLezione(descrizione, dataOra) {
 function caricaLezioniSalvate() {
     let lezioni = JSON.parse(localStorage.getItem('lezioni')) || [];
     lezioni.forEach(lezione => {
-      aggiungiLezione(lezione.descrizione, lezione.dataOra);
+      aggiungiLezione(lezione.titolo, lezione.descrizione, lezione.dataOra, true);
     });
 }
     

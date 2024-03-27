@@ -19,3 +19,37 @@ h1 {
     background-color: #f5f5dc;
 }
 
+#elenco-lezioni {
+    margin-bottom: 20px;
+}
+
+.lezione {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+  
+.lezione p {
+    margin: 0;
+}
+  
+.lezione button {
+    margin-top: 5px;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #964b00;
+    color: #fff;
+    cursor: pointer;
+}
+  
+button:hover {
+    background-color: #c1954e;
+}
